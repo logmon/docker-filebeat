@@ -2,15 +2,15 @@ FROM debian:jessie
 
 MAINTAINER Andrea Usuelli <andrea.usuelli@prima.it>
 
-ENV FILEBEAT_VERSION=5.6.1 \
-    FILEBEAT_SHA1=91bdbaacee0034f9df9112fda2a25998e102d252
+ENV FILEBEAT_VERSION=6.1.1 \
+    FILEBEAT_SHA512=09f3ec43183a8bb19d1705b1bb6965e9c18e0811f547717adeb61a76b70f22db8f7114356befe1089f0407389fd576c4a3fd8fb36182d4efa48875bdf9d19b3c
 
 RUN set -x && \
   apt-get update && \
   apt-get install -y wget && \
   wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz -O /opt/filebeat.tar.gz && \
   cd /opt && \
-  echo "${FILEBEAT_SHA1}  filebeat.tar.gz" | sha1sum -c - && \
+  echo "${FILEBEAT_SHA512}  filebeat.tar.gz" | sha512sum -c - && \
   tar xzvf filebeat.tar.gz && \
   cd filebeat-* && \
   cp filebeat /bin && \
